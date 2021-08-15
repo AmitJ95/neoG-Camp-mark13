@@ -55,11 +55,7 @@ function getAllDateFormats(date) {
     return [ddmmyyyy, mmddyyyy, yyyymmdd, ddmmyy, mmddyy, yymmdd];
 }
 
-let date = {
-    day: 10,
-    month: 2,
-    year: 2001
-}
+
 
 function checkPalindromeforAllDateFormats(date) {
 
@@ -103,6 +99,7 @@ function getNextDate(date) {
 
     let daysInMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
 
+    //check for february
     if (month == 2) {
         if (isLeapYear(year)) {
             if(day > 29){
@@ -116,6 +113,7 @@ function getNextDate(date) {
             }
         }
     }else{
+        //check if the day exceeds the max days in month
         if (day > daysInMonth[month - 1]) {
             day = 1;
             month++;
@@ -132,13 +130,66 @@ function getNextDate(date) {
         day: day,
         month: month,
         year: year
+    }   
+
+}
+
+function getNextPalindromeDate(date) {
+
+    let nextDate = getNextDate(date);
+    let ctr = 0;
+
+    while (1) {
+        ctr++;
+        let isPalindrome  = checkPalindromeforAllDateFormats(nextDate);
+        if (isPalindrome) {
+            break;
+        }
+
+        nextDate = getNextDate(nextDate);
     }
 
+    return [ctr,nextDate]
+    
 }
 
 
 
+const bdateRef = document.querySelector("#bday-date");
+const checkPailndromeBtn = document.querySelector("#checkPailndromeBtn");
+const resultDiv = document.querySelector("#result");
+
+
+function checkPailndrome(params) {
+
+    let bDate = bdateRef.value;
+ 
+    if (bDate !== "") {
+        let listOfDates = bDate.split("-");
+        let date = {
+            day: Number(listOfDates[2]),
+            month: Number(listOfDates[1]),
+            year: Number(listOfDates[0])
+        }  
+
+
+        let isDatePalindrome = checkPalindromeforAllDateFormats(date);
+
+        if(isDatePalindrome){
+            resultDiv.innerText = 'Wow! Your Birthdate is palindrome 😊'
+        }else{
+
+            let list = getNextPalindromeDate(date);
+
+            resultDiv.innerText = `Oh! Your BirthDate is not palindrome 😥
+            Next Palindrome Date is ${list[1].day}- ${list[1].month}-${list[1].year}
+            which is ${list[0]} days away in future`
+        }
+
+    }
 
 
 
-console.log(checkPalindromeforAllDateFormats(date));
+}
+
+checkPailndromeBtn.addEventListener("click", checkPailndrome);
