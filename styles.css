@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300&display=swap');
+
+body{
+    margin: auto;
+    display: flex;
+    align-content: center;
+    justify-content: center; 
+    font-family: 'Source Sans Pro', sans-serif;
+    background-image: url(/assets/balloons-svgrepo-com.svg);
+    background-size: 200px ;   
+}
+
+main{
+    margin-top: 5rem;
+    
+}
+main div{
+    margin-top: 1rem;
+}
+input{
+    width: 16rem;
+    padding: 0.5rem;
+    display: block;
+
+}
+
+button{
+    width: 5rem;
+    padding: 0.3rem 0.3rem ;
+    margin-top: 1rem; 
+    position: relative;
+    left: 6rem;
+    
+}
+
+img{
+    max-width: 100px;
+}
+
+#result{
+   font-weight: bold; 
+   font-size: large;
+   background-color: white;
+   border: 1px solid;
+   padding: 0.2rem;
+}
