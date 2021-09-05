@@ -159,7 +159,7 @@ const bdateRef = document.querySelector("#bday-date");
 const checkPailndromeBtn = document.querySelector("#checkPailndromeBtn");
 const resultDiv = document.querySelector("#result");
 
-
+resultDiv.style.display = "none";
 function checkPailndrome(params) {
 
     let bDate = bdateRef.value;
@@ -176,11 +176,12 @@ function checkPailndrome(params) {
         let isDatePalindrome = checkPalindromeforAllDateFormats(date);
 
         if(isDatePalindrome){
+            resultDiv.style.display = "block";
             resultDiv.innerText = 'Wow! Your Birthdate is palindrome 😊'
         }else{
-
+        
             let list = getNextPalindromeDate(date);
-
+            resultDiv.style.display = "block";
             resultDiv.innerText = `Oh! Your BirthDate is not palindrome 😥
             Next Palindrome Date is ${list[1].day}- ${list[1].month}-${list[1].year}
             which is ${list[0]} days away in future`

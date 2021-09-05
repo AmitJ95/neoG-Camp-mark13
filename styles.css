@@ -35,3 +35,11 @@ button{
 img{
     max-width: 100px;
 }
+
+#result{
+   font-weight: bold; 
+   font-size: large;
+   background-color: white;
+   border: 1px solid;
+   padding: 0.2rem;
+}
